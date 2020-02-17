@@ -1,0 +1,28 @@
+{
+  "npm.packageManager": "yarn",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "boundary",
+  "files.encoding": "utf8",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact",
+  ],
+  "editor.rulers": [100],
+  "search.exclude": {
+    "**/public/**": true,
+    "**/.cache/**": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
