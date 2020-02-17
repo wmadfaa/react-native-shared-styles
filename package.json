@@ -32,6 +32,9 @@
   "devDependencies": {
     "@wm-madfaa-dev/eslint-config": "wm-madfaa-dev/eslint-config#v0.1.1",
     "eslint": "^6.8.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "rollup": "^1.31.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
@@ -39,5 +42,10 @@
     "rollup-plugin-typescript2": "^0.26.0",
     "rollup-plugin-url": "^3.0.1",
     "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

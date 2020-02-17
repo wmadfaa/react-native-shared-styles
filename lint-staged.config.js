@@ -1,5 +1,5 @@
 const config = {
-  "*.{js,ts,tsx}": ["eslint --fix", "git add"]
+  "*.{ts,tsx}": ["eslint --cache --fix", "git add"]
 };
 
 module.exports = config;
