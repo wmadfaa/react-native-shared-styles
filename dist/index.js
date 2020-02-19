@@ -493,6 +493,7 @@ function createBreakpoints(breakpoints) {
         only: only,
         width: width }, other);
 }
+//# sourceMappingURL=createBreakpoints.js.map
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
