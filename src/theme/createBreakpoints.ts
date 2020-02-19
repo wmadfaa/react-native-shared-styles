@@ -28,7 +28,7 @@ export type BreakpointsOptions = Partial<
   } & Breakpoints
 >;
 
-function createBreakpoints(breakpoints: BreakpointsOptions) {
+function createBreakpoints(breakpoints: BreakpointsOptions): Breakpoints {
   const {
     values = {
       xs: 0,
@@ -79,6 +79,7 @@ function createBreakpoints(breakpoints: BreakpointsOptions) {
   ) {
     let endIndex: number = -1;
     let end_bound: number;
+
     if (typeof end !== "number") {
       endIndex = keys.indexOf(end);
       end_bound = values[keys[endIndex + 1]];
@@ -87,14 +88,14 @@ function createBreakpoints(breakpoints: BreakpointsOptions) {
     }
 
     if (endIndex === keys.length - 1) {
-      return up(start);
+      return up<T>(start);
     }
 
     const min = typeof start === "number" ? start : values[start];
     const max = end_bound - step / 100;
 
     return (style: T) => {
-      if (SCREEN_WIDTH <= min && SCREEN_WIDTH >= max) return style;
+      if (SCREEN_WIDTH >= min && SCREEN_WIDTH <= max) return style;
       return {} as T;
     };
   }

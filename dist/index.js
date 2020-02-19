@@ -474,7 +474,7 @@ function createBreakpoints(breakpoints) {
         var min = typeof start === "number" ? start : values[start];
         var max = end_bound - step / 100;
         return function (style) {
-            if (SCREEN_WIDTH <= min && SCREEN_WIDTH >= max)
+            if (SCREEN_WIDTH >= min && SCREEN_WIDTH <= max)
                 return style;
             return {};
         };
@@ -2964,7 +2964,7 @@ var shape = {
 var index$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   createBreakpoints: createBreakpoints,
-  createColorPalette: createPalette,
+  createPalette: createPalette,
   createSpacing: createSpacing,
   createTypography: createTypography,
   shadows: shadows,
@@ -2990,13 +2990,15 @@ var createStyleSheet = function (styles) {
         return cjs(create_Styles(theme, props), create_overwriteStyles(overWrite, theme, props));
     };
 };
-//# sourceMappingURL=createStyleSheet.js.map
 
 var createTheme = function (options) {
-    var others = __rest(options, []);
-    return cjs({}, others);
+    var _a = options.breakpoints, breakpointsInput = _a === void 0 ? {} : _a, _b = options.palette, paletteInput = _b === void 0 ? {} : _b, spacingInput = options.spacing, _c = options.typography, typographyInput = _c === void 0 ? {} : _c, others = __rest(options, ["breakpoints", "palette", "spacing", "typography"]);
+    var breakpoints = createBreakpoints(breakpointsInput);
+    var palette = createPalette(paletteInput);
+    var spacing = createSpacing(spacingInput);
+    var typography = createTypography(typographyInput);
+    return cjs({ breakpoints: breakpoints, palette: palette, spacing: spacing, typography: typography, shadows: shadows, shape: shape }, others);
 };
-//# sourceMappingURL=createTheme.js.map
 
 var initialTheme = createTheme({});
 var ThemeContext = React.createContext(initialTheme);
@@ -3005,10 +3007,8 @@ var ThemeProvider = function (_a) {
     var themeValue = theme ? createTheme(theme) : initialTheme;
     return (React.createElement(ThemeContext.Provider, { value: themeValue }, children));
 };
-//# sourceMappingURL=themeContext.js.map
 
 var useTheme = function () { return React.useContext(ThemeContext); };
-//# sourceMappingURL=useTheme.js.map
 
 var useStyles = function (stylesFunc, props, overWrite) {
     if (props === void 0) { props = {}; }
@@ -3041,7 +3041,6 @@ function withTheme(WrappedComponent) {
     WrapperComponent.displayName = "withTheme(" + displayName + ")";
     return WrapperComponent;
 }
-//# sourceMappingURL=withTheme.js.map
 
 exports.ThemeContext = ThemeContext;
 exports.colors = index;
