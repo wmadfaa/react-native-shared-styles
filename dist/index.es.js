@@ -1,7 +1,11 @@
+import { StyleSheet } from 'react-native';
+import React from 'react';
+
 var common = {
     black: "#000",
     white: "#fff"
 };
+//# sourceMappingURL=common.js.map
 
 var red = {
     50: "#ffebee",
@@ -19,6 +23,7 @@ var red = {
     A400: "#ff1744",
     A700: "#d50000"
 };
+//# sourceMappingURL=red.js.map
 
 var pink = {
     50: "#fce4ec",
@@ -36,6 +41,7 @@ var pink = {
     A400: "#f50057",
     A700: "#c51162"
 };
+//# sourceMappingURL=pink.js.map
 
 var purple = {
     50: "#f3e5f5",
@@ -53,6 +59,7 @@ var purple = {
     A400: "#d500f9",
     A700: "#aa00ff"
 };
+//# sourceMappingURL=purple.js.map
 
 var deepPurple = {
     50: "#ede7f6",
@@ -70,6 +77,7 @@ var deepPurple = {
     A400: "#651fff",
     A700: "#6200ea"
 };
+//# sourceMappingURL=deepPurple.js.map
 
 var indigo = {
     50: "#e8eaf6",
@@ -87,6 +95,7 @@ var indigo = {
     A400: "#3d5afe",
     A700: "#304ffe"
 };
+//# sourceMappingURL=indigo.js.map
 
 var blue = {
     50: "#e3f2fd",
@@ -104,6 +113,7 @@ var blue = {
     A400: "#2979ff",
     A700: "#2962ff"
 };
+//# sourceMappingURL=blue.js.map
 
 var lightBlue = {
     50: "#e1f5fe",
@@ -121,6 +131,7 @@ var lightBlue = {
     A400: "#00b0ff",
     A700: "#0091ea"
 };
+//# sourceMappingURL=lightBlue.js.map
 
 var cyan = {
     50: "#e0f7fa",
@@ -138,6 +149,7 @@ var cyan = {
     A400: "#00e5ff",
     A700: "#00b8d4"
 };
+//# sourceMappingURL=cyan.js.map
 
 var teal = {
     50: "#e0f2f1",
@@ -155,6 +167,7 @@ var teal = {
     A400: "#1de9b6",
     A700: "#00bfa5"
 };
+//# sourceMappingURL=teal.js.map
 
 var green = {
     50: "#e8f5e9",
@@ -172,6 +185,7 @@ var green = {
     A400: "#00e676",
     A700: "#00c853"
 };
+//# sourceMappingURL=green.js.map
 
 var lightGreen = {
     50: "#f1f8e9",
@@ -189,6 +203,7 @@ var lightGreen = {
     A400: "#76ff03",
     A700: "#64dd17"
 };
+//# sourceMappingURL=lightGreen.js.map
 
 var lime = {
     50: "#f9fbe7",
@@ -206,6 +221,7 @@ var lime = {
     A400: "#c6ff00",
     A700: "#aeea00"
 };
+//# sourceMappingURL=lime.js.map
 
 var yellow = {
     50: "#fffde7",
@@ -223,6 +239,7 @@ var yellow = {
     A400: "#ffea00",
     A700: "#ffd600"
 };
+//# sourceMappingURL=yellow.js.map
 
 var amber = {
     50: "#fff8e1",
@@ -240,6 +257,7 @@ var amber = {
     A400: "#ffc400",
     A700: "#ffab00"
 };
+//# sourceMappingURL=amber.js.map
 
 var orange = {
     50: "#fff3e0",
@@ -257,6 +275,7 @@ var orange = {
     A400: "#ff9100",
     A700: "#ff6d00"
 };
+//# sourceMappingURL=orange.js.map
 
 var deepOrange = {
     50: "#fbe9e7",
@@ -274,6 +293,7 @@ var deepOrange = {
     A400: "#ff3d00",
     A700: "#dd2c00"
 };
+//# sourceMappingURL=deepOrange.js.map
 
 var brown = {
     50: "#efebe9",
@@ -291,6 +311,7 @@ var brown = {
     A400: "#8d6e63",
     A700: "#5d4037"
 };
+//# sourceMappingURL=brown.js.map
 
 var grey = {
     50: "#fafafa",
@@ -308,6 +329,7 @@ var grey = {
     A400: "#303030",
     A700: "#616161"
 };
+//# sourceMappingURL=grey.js.map
 
 var blueGrey = {
     50: "#eceff1",
@@ -325,8 +347,9 @@ var blueGrey = {
     A400: "#78909c",
     A700: "#455a64"
 };
+//# sourceMappingURL=blueGrey.js.map
 
-
+//# sourceMappingURL=index.js.map
 
 var index = /*#__PURE__*/Object.freeze({
   __proto__: null,
@@ -352,5 +375,245 @@ var index = /*#__PURE__*/Object.freeze({
   blueGrey: blueGrey
 });
 
-export { index as colors };
+var isMergeableObject = function isMergeableObject(value) {
+	return isNonNullObject(value)
+		&& !isSpecial(value)
+};
+
+function isNonNullObject(value) {
+	return !!value && typeof value === 'object'
+}
+
+function isSpecial(value) {
+	var stringValue = Object.prototype.toString.call(value);
+
+	return stringValue === '[object RegExp]'
+		|| stringValue === '[object Date]'
+		|| isReactElement(value)
+}
+
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+
+function isReactElement(value) {
+	return value.$$typeof === REACT_ELEMENT_TYPE
+}
+
+function emptyTarget(val) {
+	return Array.isArray(val) ? [] : {}
+}
+
+function cloneUnlessOtherwiseSpecified(value, options) {
+	return (options.clone !== false && options.isMergeableObject(value))
+		? deepmerge(emptyTarget(value), value, options)
+		: value
+}
+
+function defaultArrayMerge(target, source, options) {
+	return target.concat(source).map(function(element) {
+		return cloneUnlessOtherwiseSpecified(element, options)
+	})
+}
+
+function getMergeFunction(key, options) {
+	if (!options.customMerge) {
+		return deepmerge
+	}
+	var customMerge = options.customMerge(key);
+	return typeof customMerge === 'function' ? customMerge : deepmerge
+}
+
+function getEnumerableOwnPropertySymbols(target) {
+	return Object.getOwnPropertySymbols
+		? Object.getOwnPropertySymbols(target).filter(function(symbol) {
+			return target.propertyIsEnumerable(symbol)
+		})
+		: []
+}
+
+function getKeys(target) {
+	return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
+}
+
+function propertyIsOnObject(object, property) {
+	try {
+		return property in object
+	} catch(_) {
+		return false
+	}
+}
+
+// Protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyIsUnsafe(target, key) {
+	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
+		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
+			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
+}
+
+function mergeObject(target, source, options) {
+	var destination = {};
+	if (options.isMergeableObject(target)) {
+		getKeys(target).forEach(function(key) {
+			destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
+		});
+	}
+	getKeys(source).forEach(function(key) {
+		if (propertyIsUnsafe(target, key)) {
+			return
+		}
+
+		if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) {
+			destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+		} else {
+			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
+		}
+	});
+	return destination
+}
+
+function deepmerge(target, source, options) {
+	options = options || {};
+	options.arrayMerge = options.arrayMerge || defaultArrayMerge;
+	options.isMergeableObject = options.isMergeableObject || isMergeableObject;
+	// cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
+	// implementations can use it. The caller may not replace it.
+	options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
+
+	var sourceIsArray = Array.isArray(source);
+	var targetIsArray = Array.isArray(target);
+	var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+
+	if (!sourceAndTargetTypesMatch) {
+		return cloneUnlessOtherwiseSpecified(source, options)
+	} else if (sourceIsArray) {
+		return options.arrayMerge(target, source, options)
+	} else {
+		return mergeObject(target, source, options)
+	}
+}
+
+deepmerge.all = function deepmergeAll(array, options) {
+	if (!Array.isArray(array)) {
+		throw new Error('first argument should be an array')
+	}
+
+	return array.reduce(function(prev, next) {
+		return deepmerge(prev, next, options)
+	}, {})
+};
+
+var deepmerge_1 = deepmerge;
+
+var cjs = deepmerge_1;
+
+var createStyleSheet = function (styles) {
+    var create_Styles = function (theme, props) {
+        if (styles instanceof Function) {
+            return StyleSheet.create(styles(theme, props));
+        }
+        return StyleSheet.create(styles);
+    };
+    var create_overwriteStyles = function (overWrite, theme, props) {
+        if (overWrite instanceof Function) {
+            return StyleSheet.create(overWrite(theme, props));
+        }
+        return StyleSheet.create(overWrite);
+    };
+    return function (overWrite, theme, props) {
+        return cjs(create_Styles(theme, props), create_overwriteStyles(overWrite, theme, props));
+    };
+};
+//# sourceMappingURL=createStyleSheet.js.map
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+var createTheme = function (options) {
+    var others = __rest(options, []);
+    return cjs({}, others);
+};
+//# sourceMappingURL=createTheme.js.map
+
+var initialTheme = createTheme({});
+var ThemeContext = React.createContext(initialTheme);
+var ThemeProvider = function (_a) {
+    var children = _a.children, theme = _a.theme;
+    var themeValue = theme ? createTheme(theme) : initialTheme;
+    return (React.createElement(ThemeContext.Provider, { value: themeValue }, children));
+};
+//# sourceMappingURL=themeContext.js.map
+
+var useTheme = function () { return React.useContext(ThemeContext); };
+//# sourceMappingURL=useTheme.js.map
+
+var useStyles = function (stylesFunc, props, overWrite) {
+    if (props === void 0) { props = {}; }
+    if (overWrite === void 0) { overWrite = {}; }
+    var theme = useTheme();
+    return stylesFunc(overWrite, theme, props);
+};
+//# sourceMappingURL=useStyles.js.map
+
+function withStyles(WrappedComponent, stylesFunc, overWrite) {
+    if (overWrite === void 0) { overWrite = {}; }
+    var displayName = WrappedComponent.displayName || WrappedComponent.name || "Component";
+    var WrapperComponent = React.forwardRef(function (props, ref) {
+        var styles = useStyles(stylesFunc, props, overWrite);
+        var componentProps = props;
+        return React.createElement(WrappedComponent, __assign({ ref: ref, styles: styles }, componentProps));
+    });
+    WrapperComponent.displayName = "withStyles(" + displayName + ")";
+    return WrapperComponent;
+}
+//# sourceMappingURL=withStyles.js.map
+
+function withTheme(WrappedComponent) {
+    var displayName = WrappedComponent.displayName || WrappedComponent.name || "Component";
+    var WrapperComponent = React.forwardRef(function (props, ref) {
+        var theme = useTheme();
+        var componentProps = props;
+        return React.createElement(WrappedComponent, __assign({ ref: ref, theme: theme }, componentProps));
+    });
+    WrapperComponent.displayName = "withTheme(" + displayName + ")";
+    return WrapperComponent;
+}
+//# sourceMappingURL=withTheme.js.map
+
+export { ThemeContext, index as colors, createStyleSheet, createTheme, initialTheme, ThemeProvider as themeContext, useStyles, useTheme, withStyles, withTheme };
 //# sourceMappingURL=index.es.js.map

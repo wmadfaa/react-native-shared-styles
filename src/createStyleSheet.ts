@@ -33,11 +33,12 @@ const createStyleSheet = <T extends NamedStyles<T> | NamedStyles<any>, P = {}>(
 
   type overwriteStyles = ((theme: Theme, props: P) => Partial<T>) | Partial<T>;
 
-  return (overWrite: overwriteStyles, theme: Theme, props: P) =>
-    deepmerge(
+  return (overWrite: overwriteStyles, theme: Theme, props: P) => {
+    return deepmerge(
       create_Styles(theme, props),
       create_overwriteStyles(overWrite, theme, props)
     );
+  };
 };
 
 export default createStyleSheet;
