@@ -7,7 +7,7 @@ export interface WithStylesProps<
   styles: ReturnType<SF>;
 }
 
-export function withStyles<
+function withStyles<
   SF extends (overWrite: any, theme: any, props: any) => any,
   Args extends Parameters<SF>,
   ComposedComponentProps extends WithStylesProps<SF> = WithStylesProps<SF>

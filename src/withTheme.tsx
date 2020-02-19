@@ -6,7 +6,7 @@ export interface WithThemeProps {
   theme: Theme;
 }
 
-export function withTheme<
+function withTheme<
   ComposedComponentProps extends WithThemeProps = WithThemeProps
 >(WrappedComponent: React.ComponentClass<ComposedComponentProps>) {
   type ComposedComponentInstance = InstanceType<typeof WrappedComponent>;
