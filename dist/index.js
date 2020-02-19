@@ -2954,6 +2954,11 @@ var shadows = {
 };
 //# sourceMappingURL=shadows.js.map
 
+var shape = {
+    borderRadius: 4
+};
+//# sourceMappingURL=shape.js.map
+
 
 
 var index$1 = /*#__PURE__*/Object.freeze({
@@ -2963,6 +2968,7 @@ var index$1 = /*#__PURE__*/Object.freeze({
   createSpacing: createSpacing,
   createTypography: createTypography,
   shadows: shadows,
+  shape: shape,
   keys: keys,
   createShadow: createShadow
 });
