@@ -16,6 +16,9 @@ with npm
 npm i wm-madfaa-dev/react-native-shared-styles#v0.0.1
 ```
 
+### Wiki
+* [get-started](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki/get-started)
+
 ## Built With
 
 * [color](github.com/Qix-/color#readme) - used as color conversion and manipulation
