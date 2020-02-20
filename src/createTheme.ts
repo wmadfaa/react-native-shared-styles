@@ -1,8 +1,5 @@
 import deepmerge from "deepmerge";
 import {
-  createBreakpoints,
-  Breakpoints,
-  BreakpointsOptions,
   createPalette,
   Palette,
   PaletteOptions,
@@ -15,36 +12,43 @@ import {
   shadows,
   shape
 } from "./theme";
+import methods, { Methods, MethodsOptions } from "./methods";
 
 export interface ThemeOptions {
-  breakpoints?: BreakpointsOptions;
   palette?: PaletteOptions;
   spacing?: SpacingOptions;
   typography?: TypographyOptions;
+  methods?: MethodsOptions;
 }
 export interface Theme {
-  breakpoints: Breakpoints;
   palette: Palette;
   spacing: Spacing;
   typography: Typography;
+  methods: Methods;
 }
 
 const createTheme = (options: ThemeOptions): Theme => {
   const {
-    breakpoints: breakpointsInput = {},
     palette: paletteInput = {},
     spacing: spacingInput,
     typography: typographyInput = {},
+    methods: methodsInput = {},
     ...others
   } = options;
 
-  const breakpoints = createBreakpoints(breakpointsInput);
   const palette = createPalette(paletteInput);
   const spacing = createSpacing(spacingInput);
   const typography = createTypography(typographyInput);
 
   return deepmerge(
-    { breakpoints, palette, spacing, typography, shadows, shape },
+    {
+      palette,
+      spacing,
+      typography,
+      shadows,
+      shape,
+      methods: methods(methodsInput)
+    },
     others
   );
 };

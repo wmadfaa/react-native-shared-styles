@@ -419,82 +419,6 @@ function __rest(s, e) {
     return t;
 }
 
-var SCREEN_WIDTH = reactNative.Dimensions.get("screen").width;
-var keys = ["xs", "sm", "md", "lg", "xl", "xxl"];
-function createBreakpoints(breakpoints) {
-    var _a = breakpoints.values, values = _a === void 0 ? {
-        xs: 0,
-        sm: 320,
-        md: 480,
-        lg: 768,
-        xl: 1024,
-        xxl: 1224
-    } : _a, _b = breakpoints.step, step = _b === void 0 ? 5 : _b, other = __rest(breakpoints, ["values", "step"]);
-    function up(key) {
-        var value = typeof key === "number" ? key : values[key];
-        return function (style) {
-            if (SCREEN_WIDTH >= value)
-                return style;
-            return {};
-        };
-    }
-    function down(key) {
-        var endIndex = -1;
-        var upper_bound;
-        if (typeof key === "number") {
-            upper_bound = key;
-        }
-        else {
-            endIndex = keys.indexOf(key) + 1;
-            upper_bound = values[keys[endIndex]];
-        }
-        if (endIndex === keys.length) {
-            return up("xs");
-        }
-        var value = typeof upper_bound === "number" && endIndex > 0 ? upper_bound : key;
-        return function (style) {
-            if (SCREEN_WIDTH <= value)
-                return style;
-            return {};
-        };
-    }
-    function between(start, end) {
-        var endIndex = -1;
-        var end_bound;
-        if (typeof end !== "number") {
-            endIndex = keys.indexOf(end);
-            end_bound = values[keys[endIndex + 1]];
-        }
-        else {
-            end_bound = end;
-        }
-        if (endIndex === keys.length - 1) {
-            return up(start);
-        }
-        var min = typeof start === "number" ? start : values[start];
-        var max = end_bound - step / 100;
-        return function (style) {
-            if (SCREEN_WIDTH >= min && SCREEN_WIDTH <= max)
-                return style;
-            return {};
-        };
-    }
-    function only(key) {
-        return between(key, key);
-    }
-    function width(key) {
-        return values[key];
-    }
-    return __assign({ keys: keys,
-        values: values,
-        up: up,
-        down: down,
-        between: between,
-        only: only,
-        width: width }, other);
-}
-//# sourceMappingURL=createBreakpoints.js.map
-
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -2959,17 +2883,15 @@ var shape = {
 };
 //# sourceMappingURL=shape.js.map
 
-
+//# sourceMappingURL=index.js.map
 
 var index$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  createBreakpoints: createBreakpoints,
   createPalette: createPalette,
   createSpacing: createSpacing,
   createTypography: createTypography,
   shadows: shadows,
   shape: shape,
-  keys: keys,
   createShadow: createShadow
 });
 
@@ -2991,13 +2913,111 @@ var createStyleSheet = function (styles) {
     };
 };
 
+var SCREEN_WIDTH = reactNative.Dimensions.get("screen").width;
+var keys = ["xs", "sm", "md", "lg", "xl", "xxl"];
+var Breakpoints = /** @class */ (function () {
+    function Breakpoints(step, values) {
+        var _this = this;
+        this.between = function (start, end) {
+            var endIndex = -1;
+            var end_bound;
+            if (typeof end !== "number") {
+                endIndex = keys.indexOf(end);
+                end_bound = _this.values[keys[endIndex + 1]];
+            }
+            else {
+                end_bound = end;
+            }
+            if (endIndex === keys.length - 1) {
+                return _this.up(start);
+            }
+            var min = typeof start === "number" ? start : _this.values[start];
+            var max = end_bound - _this.step / 100;
+            return SCREEN_WIDTH >= min && SCREEN_WIDTH <= max;
+        };
+        this.only = function (key) {
+            return _this.between(key, key);
+        };
+        this.width = function (key) {
+            return _this.values[key];
+        };
+        this.step = step;
+        this.values = values;
+    }
+    Breakpoints.prototype.up = function (key) {
+        var value = typeof key === "number" ? key : this.values[key];
+        return SCREEN_WIDTH >= value;
+    };
+    Breakpoints.prototype.down = function (key) {
+        var endIndex = -1;
+        var upper_bound;
+        if (typeof key === "number") {
+            upper_bound = key;
+        }
+        else {
+            endIndex = keys.indexOf(key) + 1;
+            upper_bound = this.values[keys[endIndex]];
+        }
+        if (endIndex === keys.length) {
+            return this.up("xs");
+        }
+        var value = typeof upper_bound === "number" && endIndex > 0 ? upper_bound : key;
+        return SCREEN_WIDTH <= value;
+    };
+    return Breakpoints;
+}());
+function createBreakpoint(options) {
+    if (options === void 0) { options = {
+        step: 5,
+        values: {
+            xs: 0,
+            sm: 320,
+            md: 480,
+            lg: 768,
+            xl: 1024,
+            xxl: 1224
+        }
+    }; }
+    return new Breakpoints(options.step, options.values);
+}
+//# sourceMappingURL=breakpoints.js.map
+
+var _a = reactNative.Dimensions.get("screen"), SCREEN_WIDTH$1 = _a.width, SCREEN_HEIGHT = _a.height;
+var Percent = /** @class */ (function () {
+    function Percent() {
+        this.calc = function (a, c) { return a * (c / 100); };
+    }
+    Percent.prototype.w = function (value) {
+        this.calc(value, SCREEN_WIDTH$1);
+    };
+    Percent.prototype.h = function (value) {
+        this.calc(value, SCREEN_HEIGHT);
+    };
+    return Percent;
+}());
+//# sourceMappingURL=percent.js.map
+
+var methods = function (_a) {
+    var breakpoints = _a.breakpoints;
+    return {
+        breakpoints: createBreakpoint(breakpoints),
+        percent: new Percent()
+    };
+};
+
 var createTheme = function (options) {
-    var _a = options.breakpoints, breakpointsInput = _a === void 0 ? {} : _a, _b = options.palette, paletteInput = _b === void 0 ? {} : _b, spacingInput = options.spacing, _c = options.typography, typographyInput = _c === void 0 ? {} : _c, others = __rest(options, ["breakpoints", "palette", "spacing", "typography"]);
-    var breakpoints = createBreakpoints(breakpointsInput);
+    var _a = options.palette, paletteInput = _a === void 0 ? {} : _a, spacingInput = options.spacing, _b = options.typography, typographyInput = _b === void 0 ? {} : _b, _c = options.methods, methodsInput = _c === void 0 ? {} : _c, others = __rest(options, ["palette", "spacing", "typography", "methods"]);
     var palette = createPalette(paletteInput);
     var spacing = createSpacing(spacingInput);
     var typography = createTypography(typographyInput);
-    return cjs({ breakpoints: breakpoints, palette: palette, spacing: spacing, typography: typography, shadows: shadows, shape: shape }, others);
+    return cjs({
+        palette: palette,
+        spacing: spacing,
+        typography: typography,
+        shadows: shadows,
+        shape: shape,
+        methods: methods(methodsInput)
+    }, others);
 };
 
 var initialTheme = createTheme({});

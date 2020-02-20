@@ -1,15 +1,16 @@
-import { Breakpoints, BreakpointsOptions, Palette, PaletteOptions, Spacing, SpacingOptions, Typography, TypographyOptions } from "./theme";
+import { Palette, PaletteOptions, Spacing, SpacingOptions, Typography, TypographyOptions } from "./theme";
+import { Methods, MethodsOptions } from "./methods";
 export interface ThemeOptions {
-    breakpoints?: BreakpointsOptions;
     palette?: PaletteOptions;
     spacing?: SpacingOptions;
     typography?: TypographyOptions;
+    methods?: MethodsOptions;
 }
 export interface Theme {
-    breakpoints: Breakpoints;
     palette: Palette;
     spacing: Spacing;
     typography: Typography;
+    methods: Methods;
 }
 declare const createTheme: (options: ThemeOptions) => Theme;
 export default createTheme;
