@@ -5,7 +5,7 @@ const useStyles = <
   Args extends Parameters<SF>
 >(
   stylesFunc: SF,
-  props: Args[2] = {},
+  props: Args[2],
   overWrite: Args[0] = {}
 ): ReturnType<SF> => {
   const theme = useTheme();

@@ -9,8 +9,13 @@ import {
   createTypography,
   Typography,
   TypographyOptions,
-  shadows,
-  shape
+  createShadow,
+  shadows as defaultShadows,
+  Shadows,
+  createShadowArgs,
+  shape,
+  Shape,
+  ShapeOptions
 } from "./theme";
 import methods, { Methods, MethodsOptions } from "./methods";
 
@@ -18,12 +23,16 @@ export interface ThemeOptions {
   palette?: PaletteOptions;
   spacing?: SpacingOptions;
   typography?: TypographyOptions;
+  shadows?: { [key: string]: createShadowArgs };
+  shape?: ShapeOptions;
   methods?: MethodsOptions;
 }
 export interface Theme {
   palette: Palette;
   spacing: Spacing;
   typography: Typography;
+  shadows: Shadows;
+  shape: Shape;
   methods: Methods;
 }
 
@@ -33,12 +42,18 @@ const createTheme = (options: ThemeOptions): Theme => {
     spacing: spacingInput,
     typography: typographyInput = {},
     methods: methodsInput = {},
+    shadows: shadowsInput = {},
     ...others
   } = options;
 
   const palette = createPalette(paletteInput);
   const spacing = createSpacing(spacingInput);
   const typography = createTypography(typographyInput);
+
+  const shadows = Object.keys(shadowsInput).reduce((acc, shadowKey) => {
+    const { depth, blur, color } = shadowsInput[shadowKey];
+    return { ...acc, [shadowKey]: createShadow(depth, blur, color) };
+  }, defaultShadows);
 
   return deepmerge(
     {

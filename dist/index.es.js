@@ -2998,21 +2998,28 @@ var methods = function (_a) {
         percent: new Percent()
     };
 };
+//# sourceMappingURL=index.js.map
 
 var createTheme = function (options) {
-    var _a = options.palette, paletteInput = _a === void 0 ? {} : _a, spacingInput = options.spacing, _b = options.typography, typographyInput = _b === void 0 ? {} : _b, _c = options.methods, methodsInput = _c === void 0 ? {} : _c, others = __rest(options, ["palette", "spacing", "typography", "methods"]);
+    var _a = options.palette, paletteInput = _a === void 0 ? {} : _a, spacingInput = options.spacing, _b = options.typography, typographyInput = _b === void 0 ? {} : _b, _c = options.methods, methodsInput = _c === void 0 ? {} : _c, _d = options.shadows, shadowsInput = _d === void 0 ? {} : _d, others = __rest(options, ["palette", "spacing", "typography", "methods", "shadows"]);
     var palette = createPalette(paletteInput);
     var spacing = createSpacing(spacingInput);
     var typography = createTypography(typographyInput);
+    var shadows$1 = Object.keys(shadowsInput).reduce(function (acc, shadowKey) {
+        var _a;
+        var _b = shadowsInput[shadowKey], depth = _b.depth, blur = _b.blur, color = _b.color;
+        return __assign(__assign({}, acc), (_a = {}, _a[shadowKey] = createShadow(depth, blur, color), _a));
+    }, shadows);
     return cjs({
         palette: palette,
         spacing: spacing,
         typography: typography,
-        shadows: shadows,
+        shadows: shadows$1,
         shape: shape,
         methods: methods(methodsInput)
     }, others);
 };
+//# sourceMappingURL=createTheme.js.map
 
 var initialTheme = createTheme({});
 var ThemeContext = React.createContext(initialTheme);
@@ -3025,7 +3032,6 @@ var ThemeProvider = function (_a) {
 var useTheme = function () { return React.useContext(ThemeContext); };
 
 var useStyles = function (stylesFunc, props, overWrite) {
-    if (props === void 0) { props = {}; }
     if (overWrite === void 0) { overWrite = {}; }
     var theme = useTheme();
     return stylesFunc(overWrite, theme, props);
@@ -3043,7 +3049,6 @@ function withStyles(WrappedComponent, stylesFunc, overWrite) {
     WrapperComponent.displayName = "withStyles(" + displayName + ")";
     return WrapperComponent;
 }
-//# sourceMappingURL=withStyles.js.map
 
 function withTheme(WrappedComponent) {
     var displayName = WrappedComponent.displayName || WrappedComponent.name || "Component";

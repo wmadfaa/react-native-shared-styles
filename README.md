@@ -17,7 +17,12 @@ npm i wm-madfaa-dev/react-native-shared-styles#v0.0.1
 ```
 
 ### Wiki
+* [Home](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki)
 * [get-started](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki/get-started)
+* Methods
+  * [createStyleSheet](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki/createStyleSheet)
+  * [useStyles](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki/useStyles)
+  * [withStyles](https://github.com/wm-madfaa-dev/react-native-shared-styles/wiki/withStyles)
 
 ## Built With
 
