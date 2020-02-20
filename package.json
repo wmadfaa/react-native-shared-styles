@@ -2,7 +2,7 @@
   "name": "react-native-shared-styles",
   "title": "React Native Shared Styles",
   "description": "set of functions for helping with shearing styles between the components and adding multiple themes /dark, light/ to your react native app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
