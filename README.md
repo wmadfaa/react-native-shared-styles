@@ -1,17 +1,35 @@
 # react-native-shared-styles
 
-## Getting started
+set of functions for helping with shearing styles between the components and adding multiple themes /dark, light/ to your react native app
 
-```sh
-npm install react-native-shared-styles
-#or
-yarn add react-native-shared-styles
+### Installing
+
+with yarn
+
+```
+yarn add wm-madfaa-dev/react-native-shared-styles#v0.0.1
 ```
 
-## Usage
+with npm
 
-```javascript
-import Styles from "react-native-shared-styles";
-
-// TODO: What to do with the module?
 ```
+npm i wm-madfaa-dev/react-native-shared-styles#v0.0.1
+```
+
+## Built With
+
+* [color](github.com/Qix-/color#readme) - used as color conversion and manipulation
+* [deepmerge](github.com/TehShrike/deepmerge) - used to merge the properties of the theme snippets deeply
+* [rollup](github.com/rollup/rollup) - Used as module bundler
+
+## Versioning
+
+the versions available, see the [tags on this repository](https://github.com/wm-madfaa-dev/react-native-shared-styles/tags).
+
+## Authors
+
+* **Wasim Almadfaa** - *Initial work* - [wm-madfaa-dev](https://github.com/wm-madfaa-dev)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
