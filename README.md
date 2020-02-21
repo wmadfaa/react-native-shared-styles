@@ -1,19 +1,19 @@
 # react-native-shared-styles
 
-set of functions for helping with shearing styles between the components and adding multiple themes /dark, light/ to your react native app
+set of functions for shearing styles among the app components  
 
 ### Installing
 
 with yarn
 
 ```
-yarn add wm-madfaa-dev/react-native-shared-styles#v0.0.1
+yarn add wm-madfaa-dev/react-native-shared-styles#v0.0.2
 ```
 
 with npm
 
 ```
-npm i wm-madfaa-dev/react-native-shared-styles#v0.0.1
+npm i wm-madfaa-dev/react-native-shared-styles#v0.0.2
 ```
 
 ### Wiki
