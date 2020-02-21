@@ -1,6 +1,6 @@
 # react-native-shared-styles
 
-set of functions for helping with shearing styles between the components and adding multiple themes /dark, light/ to your react native app
+set of functions for shearing styles among the app components  
 
 ### Installing
 
